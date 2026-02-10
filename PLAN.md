@@ -1,6 +1,15 @@
 # React 19 & 19.2 Features Showcase - Learning Plan
 
-A comprehensive guide to learn and implement all major features introduced in React 19.0 and React 19.2.
+A comprehensive guide to learn and implement all major features introduced in React 19.0 and React 19.2 using **Next.js 15+**.
+
+## Why Next.js?
+
+This guide uses Next.js because it provides **full support for all React 19.2 features**:
+- ✅ **Server Components** - Enable `cacheSignal` and advanced patterns
+- ✅ **Partial Pre-rendering** - Built-in support via experimental flag
+- ✅ **App Router** - Modern routing without extra libraries
+- ✅ **Metadata API** - Simplified SEO management
+- ✅ **Production Ready** - Easy deployment to Vercel
 
 ## Prerequisites
 
@@ -8,46 +17,83 @@ A comprehensive guide to learn and implement all major features introduced in Re
 - Familiarity with React basics
 - Understanding of async/await and Promises
 - Basic knowledge of TypeScript (optional but recommended)
+- Understanding of Next.js App Router (recommended)
+
+## Server Components vs Client Components
+
+**Next.js 13+ defaults to Server Components.** Understanding when to use each is crucial:
+
+### Server Components (Default)
+- No `'use client'` directive needed
+- Great for: data fetching, SEO, static content
+- Can use: `async/await`, `cache()`, `cacheSignal`
+- Cannot use: `useState`, `useEffect`, event handlers
+
+### Client Components
+- Require `'use client'` directive at the top
+- Great for: interactivity, browser APIs, state management
+- Can use: all hooks, event handlers, browser APIs
+- Run on both server (SSR) and client (hydration)
+
+**Rule of Thumb:** Start with Server Components, add `'use client'` only when you need interactivity!
 
 ## Project Setup
 
-1. **Initialize React Project**
+1. **Initialize Next.js Project**
    ```bash
-   npm create vite@latest react-19-showcase -- --template react-ts
+   npx create-next-app@latest react-19-showcase
+   ```
+   
+   When prompted, select:
+   - ✅ TypeScript: Yes
+   - ✅ ESLint: Yes
+   - ✅ Tailwind CSS: Yes
+   - ✅ `src/` directory: No (use `app/` dir)
+   - ✅ App Router: Yes
+   - ✅ Turbopack: Your choice
+   - ✅ Import alias: Default (@/*)
+
+   ```bash
    cd react-19-showcase
-   npm install
    ```
 
-2. **Upgrade to React 19.2**
+2. **Ensure React 19.2 is installed**
    ```bash
    npm install react@19.2 react-dom@19.2
    ```
 
-3. **Install Additional Dependencies**
-   ```bash
-   npm install react-router-dom
+3. **Configure Next.js for React 19**
+   Update `next.config.js`:
+   ```js
+   /** @type {import('next').NextConfig} */
+   const nextConfig = {
+     experimental: {
+       ppr: true, // Enable Partial Pre-rendering
+     },
+   };
+   export default nextConfig;
    ```
 
 4. **Project Structure**
    ```
-   src/
+   app/
    ├── demos/
    │   ├── react-19.0/
-   │   │   ├── ActionsDemo.tsx
-   │   │   ├── OptimisticDemo.tsx
-   │   │   ├── UseDemo.tsx
-   │   │   ├── RefDemo.tsx
-   │   │   ├── MetadataDemo.tsx
-   │   │   └── AssetLoadingDemo.tsx
+   │   │   ├── actions/page.tsx
+   │   │   ├── optimistic/page.tsx
+   │   │   ├── use-hook/page.tsx
+   │   │   ├── ref-prop/page.tsx
+   │   │   ├── metadata/page.tsx
+   │   │   └── asset-loading/page.tsx
    │   └── react-19.2/
-   │       ├── ActivityDemo.tsx
-   │       ├── UseEffectEventDemo.tsx
-   │       ├── CacheSignalDemo.tsx
-   │       └── PartialPrerenderingDemo.tsx
+   │       ├── activity/page.tsx
+   │       ├── use-effect-event/page.tsx
+   │       ├── cache-signal/page.tsx
+   │       └── partial-prerender/page.tsx
    ├── components/
    │   └── Navigation.tsx
-   ├── App.tsx
-   └── main.tsx
+   ├── layout.tsx
+   └── page.tsx
    ```
 
 ---
@@ -66,7 +112,8 @@ A comprehensive guide to learn and implement all major features introduced in Re
 
 **Implementation Steps:**
 
-1. **Create a Basic Form (ActionsDemo.tsx)**
+1. **Create a Basic Form (app/demos/react-19.0/actions/page.tsx)**
+   - Mark component with `'use client'` directive
    - Import `useActionState` from 'react'
    - Create an async action function that simulates form submission
    - Use `useActionState(actionFn, initialState)`
@@ -102,7 +149,8 @@ A comprehensive guide to learn and implement all major features introduced in Re
 
 **Implementation Steps:**
 
-1. **Create a Todo List (OptimisticDemo.tsx)**
+1. **Create a Todo List (app/demos/react-19.0/optimistic/page.tsx)**
+   - Mark component with `'use client'` directive
    - Set up a list of todos with local state
    - Create an async function to add todos (simulate API delay)
    - Use `useOptimistic` to show immediate updates
@@ -137,8 +185,9 @@ A comprehensive guide to learn and implement all major features introduced in Re
 
 **Implementation Steps:**
 
-1. **Create a Data Fetching Demo (UseDemo.tsx)**
-   - Create a function that returns a Promise (fetch API data)
+1. **Create a Data Fetching Demo (app/demos/react-19.0/use-hook/page.tsx)**
+   - This can be a Server Component (no 'use client' needed!)
+   - Create an async function that fetches data
    - Wrap component with `<Suspense>` boundary
    - Use `use(promise)` to read the data
    - Add loading fallback
@@ -171,7 +220,8 @@ A comprehensive guide to learn and implement all major features introduced in Re
 
 **Implementation Steps:**
 
-1. **Create a Custom Input Component (RefDemo.tsx)**
+1. **Create a Custom Input Component (app/demos/react-19.0/ref-prop/page.tsx)**
+   - Mark component with `'use client'` directive
    - Create a component that accepts `ref` as a prop
    - Forward the ref to a DOM element
    - Add custom functionality (e.g., focus method)
@@ -204,10 +254,11 @@ A comprehensive guide to learn and implement all major features introduced in Re
 
 **Implementation Steps:**
 
-1. **Create Multiple Pages (MetadataDemo.tsx)**
-   - Create 3-4 different page components
-   - Add unique `<title>` to each page
-   - Add page-specific meta descriptions
+1. **Create Multiple Pages (app/demos/react-19.0/metadata/)**
+   - Use Next.js Metadata API in page.tsx files
+   - Export metadata object from each page
+   - Add dynamic metadata with generateMetadata function
+   - Add unique titles and descriptions per route
 
 2. **Add Open Graph Tags**
    - Add OG tags for social sharing
@@ -238,7 +289,8 @@ A comprehensive guide to learn and implement all major features introduced in Re
 
 **Implementation Steps:**
 
-1. **Create Resource Preloading Demo (AssetLoadingDemo.tsx)**
+1. **Create Resource Preloading Demo (app/demos/react-19.0/asset-loading/page.tsx)**
+   - Mark component with `'use client'` directive
    - Import preloading functions from 'react-dom'
    - Preload fonts before they're needed
    - Preload images for next page
@@ -272,7 +324,8 @@ A comprehensive guide to learn and implement all major features introduced in Re
 
 **Implementation Steps:**
 
-1. **Create Tab Navigation (ActivityDemo.tsx)**
+1. **Create Tab Navigation (app/demos/react-19.2/activity/page.tsx)**
+   - Mark component with `'use client'` directive
    - Create 3 tabs with heavy content
    - Use `<Activity mode={isVisible ? 'visible' : 'hidden'}>` for each tab
    - Compare with traditional conditional rendering
@@ -306,7 +359,8 @@ A comprehensive guide to learn and implement all major features introduced in Re
 
 **Implementation Steps:**
 
-1. **Create Chat Room Example (UseEffectEventDemo.tsx)**
+1. **Create Chat Room Example (app/demos/react-19.2/use-effect-event/page.tsx)**
+   - Mark component with `'use client'` directive
    - Build a component with roomId and theme props
    - Create a connection Effect that shows notifications
    - Show the problem: theme changes cause reconnection
@@ -340,10 +394,10 @@ A comprehensive guide to learn and implement all major features introduced in Re
 
 **Implementation Steps:**
 
-1. **Set Up Server Component (CacheSignalDemo.tsx)**
-   - Note: Requires Next.js or RSC-enabled framework
+1. **Set Up Server Component (app/demos/react-19.2/cache-signal/page.tsx)**
+   - This is a Server Component (no 'use client' directive!)
    - Import `cache` and `cacheSignal` from 'react'
-   - Create cached fetch function
+   - Create cached fetch function with deduplication
 
 2. **Use cacheSignal for Cleanup**
    - Pass cacheSignal to fetch as AbortSignal
@@ -409,10 +463,11 @@ A comprehensive guide to learn and implement all major features introduced in Re
 
 **Implementation Steps:**
 
-1. **Set Up Pre-rendering (PartialPrerenderingDemo.tsx)**
-   - Note: Requires custom server setup
-   - Use `prerender()` to generate static shell
-   - Save postponed state
+1. **Set Up Pre-rendering (app/demos/react-19.2/partial-prerender/page.tsx)**
+   - Enable PPR in next.config.js (experimental.ppr: true)
+   - Create static shell wrapper component
+   - Use Suspense boundaries to separate static/dynamic content
+   - Static parts render immediately, dynamic parts stream in
 
 2. **Implement Resume**
    - Load postponed state from server
@@ -472,11 +527,15 @@ After implementing each feature, ask yourself:
 - [React 19 Release Blog](https://react.dev/blog/2024/12/05/react-19)
 - [React 19.2 Release Blog](https://react.dev/blog/2025/10/01/react-19-2)
 - [React Docs](https://react.dev)
+- [Next.js 15 Documentation](https://nextjs.org/docs)
+- [Server Components](https://react.dev/reference/rsc/server-components)
 - [useActionState Docs](https://react.dev/reference/react/useActionState)
 - [useOptimistic Docs](https://react.dev/reference/react/useOptimistic)
 - [use Hook Docs](https://react.dev/reference/react/use)
 - [Activity Component Docs](https://react.dev/reference/react/Activity)
 - [useEffectEvent Docs](https://react.dev/learn/separating-events-from-effects)
+- [Next.js Metadata API](https://nextjs.org/docs/app/building-your-application/optimizing/metadata)
+- [Partial Pre-rendering](https://nextjs.org/docs/app/building-your-application/rendering/partial-prerendering)
 
 ---
 
