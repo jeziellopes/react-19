@@ -1,12 +1,17 @@
 # React 19 & 19.2 Features Showcase
 
+> **📚 Study Project - Work in Progress**  
+> This is a personal study project where I'm planning and building a comprehensive learning resource for React 19.0 and 19.2 features. The documentation (PLAN.md and TASKS.md) is complete, but the actual demos are still being implemented.
+
 A comprehensive learning project demonstrating all major features introduced in React 19.0 and React 19.2, with hands-on examples and implementation guides built with **Next.js 15+**.
 
 ## 🎯 About This Project
 
-This repository serves as an interactive learning resource for developers looking to understand and master the latest React features. Each feature is implemented as a standalone demo with clear examples and explanations.
+This repository is designed as an interactive learning resource for developers (including myself!) looking to understand and master the latest React features. The goal is to implement each feature as a standalone demo with clear examples and explanations.
 
-**Why Next.js?** This project uses Next.js to provide full support for all React 19.2 features, including Server Components, `cacheSignal`, and Partial Pre-rendering, which require a React Server Components framework.
+**Current Status:** 📋 Planning & Documentation Phase → 🚧 Implementation Coming Soon
+
+**Why Next.js?** This project will use Next.js to provide full support for all React 19.2 features, including Server Components, `cacheSignal`, and Partial Pre-rendering, which require a React Server Components framework.
 
 ## ✨ Features Covered
 
@@ -36,6 +41,8 @@ This repository serves as an interactive learning resource for developers lookin
 
 ## 🚀 Getting Started
 
+> **Note:** The project implementation is currently in progress. The setup instructions below are for when the project is ready to run. For now, you can explore the planning documents ([PLAN.md](PLAN.md) and [TASKS.md](TASKS.md)) to understand the roadmap.
+
 ### Installation
 
 1. **Clone the repository**
@@ -44,7 +51,7 @@ This repository serves as an interactive learning resource for developers lookin
    cd react-19
    ```
 
-2. **Install dependencies**
+2. **Install dependencies** (when implementation begins)
    ```bash
    npm install
    ```
@@ -64,7 +71,7 @@ This repository serves as an interactive learning resource for developers lookin
    };
    ```
 
-### Running the Project
+### Running the Project (Coming Soon)
 
 ```bash
 # Development mode
@@ -80,6 +87,8 @@ npm run start
 The app will be available at `http://localhost:3000`.
 
 ## 📁 Project Structure
+
+> **Note:** This is the planned structure. Implementation is in progress.
 
 ```
 react-19/
@@ -102,18 +111,18 @@ react-19/
 │   ├── layout.tsx                       # Root layout with providers
 │   └── page.tsx                         # Home page
 ├── next.config.js                       # Next.js configuration
-├── PLAN.md                              # Detailed implementation guide
-├── TASKS.md                             # Implementation checklist
-├── README.md                            # This file
+├── PLAN.md                              # Detailed implementation guide ✅
+├── TASKS.md                             # Implementation checklist ✅
+├── README.md                            # This file ✅
 └── package.json
 ```
 
 ## 📚 Learning Path
 
-We recommend following this learning path:
+**Recommended approach once demos are implemented:**
 
 0. **Understand Next.js Basics** - Learn Server vs Client Components distinction
-1. **Start with the basics** - Read through `PLAN.md` for detailed implementation steps
+1. **Start with the basics** - Read through [PLAN.md](PLAN.md) for detailed implementation steps
 2. **React 19.0 Features** (Foundation)
    - Begin with Actions (`actions/page.tsx`)
    - Move to Optimistic Updates (`optimistic/page.tsx`)
@@ -131,9 +140,11 @@ We recommend following this learning path:
 
 4. **Build Real Projects** - Apply multiple features together
 
-## 🎓 Key Learning Objectives
+**Current Focus:** Working through the implementation following this exact path! Track progress in [TASKS.md](TASKS.md).
 
-By working through this project, you will:
+## 🎓 Learning Objectives
+
+Through building and working with this project, the goals are to:
 
 - ✅ Understand modern React patterns and best practices
 - ✅ Learn to build forms without manual loading state management
@@ -142,6 +153,8 @@ By working through this project, you will:
 - ✅ Optimize performance with preloading strategies
 - ✅ Use React DevTools for performance profiling
 - ✅ Apply advanced rendering strategies (partial pre-rendering)
+- ✅ Gain hands-on experience with Server Components
+- ✅ Build a comprehensive reference project for React 19+
 
 ## 🔍 Feature Highlights
 
@@ -196,13 +209,23 @@ function Input({ ref }) {  // Just works! 🚀
 
 ## 🤝 Contributing
 
-This is a learning project, but contributions are welcome! Feel free to:
+This is primarily a personal learning project, but suggestions and feedback are welcome! Feel free to:
 
-- Report bugs or issues
-- Suggest improvements to demos
-- Add new examples
-- Improve documentation
-- Share your learning experience
+- Open issues with suggestions or corrections
+- Share ideas for better demo implementations
+- Report any errors in the documentation
+- Share your own learning experience with React 19
+
+**Note:** As this is a study project, pull requests will be reviewed carefully to ensure they align with the learning objectives.
+
+## 📊 Project Status
+
+- ✅ **Documentation Complete** - PLAN.md and TASKS.md ready
+- ✅ **Next.js Setup** - Configuration and structure planned
+- 🚧 **Implementation In Progress** - Demos being built one by one
+- ⏳ **Deployment** - Coming after implementation
+
+Track progress in [TASKS.md](TASKS.md)!
 
 ## 📝 Notes
 
@@ -213,6 +236,16 @@ This is a learning project, but contributions are welcome! Feel free to:
 - Always check the [official React docs](https://react.dev) for the latest updates
 
 ## 🎯 Next Steps
+
+**For following along with this study project:**
+
+1. ⭐ Star this repo to follow the progress
+2. 📖 Read through [PLAN.md](PLAN.md) for detailed implementation guide
+3. ✅ Check [TASKS.md](TASKS.md) for current progress
+4. 🔔 Watch for updates as demos are implemented
+5. 💬 Open discussions/issues with questions or suggestions
+
+**For building your own version:**
 
 1. Read through `PLAN.md` for detailed implementation steps
 2. Set up your development environment
@@ -226,6 +259,7 @@ MIT License - Feel free to use this project for learning and reference.
 
 ---
 
-**Happy Learning!** 🚀 Master React 19 and build amazing modern web applications.
+**Let's Learn Together!** 🚀 Follow along as I build this comprehensive study project for React 19 and master modern web development.
 
-*Last Updated: February 2026*
+*Project Status: 📋 Planning Complete → 🚧 Implementation In Progress*  
+*Last Updated: February 11, 2026*
