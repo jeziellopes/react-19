@@ -2,19 +2,29 @@
 
 A checklist to track implementation progress for all React 19.0 and 19.2 features using **Next.js 15+**.
 
-> **Note:** This project uses Next.js to enable full support for Server Components, `cacheSignal`, and Partial Pre-rendering.
+> **Important:** This is **ONE Next.js project** with multiple demo pages/routes, not separate standalone projects. All features will be built in the same codebase and accessible through different routes.
+
+### Workflow Overview
+
+1. ✅ **Set up ONE Next.js project** (do this once)
+2. ✅ **Create shared layout/navigation** (used by all pages)
+3. 🔄 **Add demo pages one at a time** (each as a new route)
+4. 🔄 **Run ONE dev server** (access all demos via different URLs)
+5. ✅ **Build integration examples** (pages that combine features)
+6. ✅ **Deploy ONE application** (all features included)
 
 ## 🏗️ Project Setup
 
-- [ ] Initialize Next.js project with TypeScript and Tailwind
+- [ ] Initialize ONE Next.js project with TypeScript and Tailwind
 - [ ] Install and configure React 19.2
 - [ ] Configure next.config.js for experimental features (PPR)
 - [ ] Set up App Router folder structure (app/ directory)
-- [ ] Create root layout.tsx with metadata
-- [ ] Create home page.tsx
-- [ ] Create Navigation component
+- [ ] Create root layout.tsx with metadata (used by all pages)
+- [ ] Create home page.tsx with demo list/navigation
+- [ ] Create shared Navigation component (used across all pages)
 - [ ] Set up TypeScript and ESLint config
 - [ ] Test Server Components vs Client Components setup
+- [ ] Verify one dev server can serve all routes
 
 ---
 
@@ -282,25 +292,30 @@ A checklist to track implementation progress for all React 19.0 and 19.2 feature
 
 ## 📊 Progress Tracking
 
-**React 19.0 Features:** 0/6 completed
-- [ ] Actions & useActionState
-- [ ] Optimistic Updates
-- [ ] use() Hook
-- [ ] Ref as Prop
-- [ ] Document Metadata
-- [ ] Asset Loading
+**Single Project Status:**
+- [ ] Next.js project initialized and configured
+- [ ] Shared layout and navigation complete
+- [ ] Home page with feature list complete
 
-**React 19.2 Features:** 0/5 completed
-- [ ] Activity Component
-- [ ] useEffectEvent
-- [ ] cacheSignal
-- [ ] Performance Tracks
-- [ ] Partial Pre-rendering
+**React 19.0 Features:** 0/6 completed (Individual pages/routes)
+- [ ] Actions & useActionState - `/demos/react-19.0/actions`
+- [ ] Optimistic Updates - `/demos/react-19.0/optimistic`
+- [ ] use() Hook - `/demos/react-19.0/use-hook`
+- [ ] Ref as Prop - `/demos/react-19.0/ref-prop`
+- [ ] Document Metadata - `/demos/react-19.0/metadata`
+- [ ] Asset Loading - `/demos/react-19.0/asset-loading`
 
-**Integration Projects:** 0/3 completed
-- [ ] Blog Platform
-- [ ] E-commerce Cart
-- [ ] Real-time Dashboard
+**React 19.2 Features:** 0/5 completed (Individual pages/routes)
+- [ ] Activity Component - `/demos/react-19.2/activity`
+- [ ] useEffectEvent - `/demos/react-19.2/use-effect-event`
+- [ ] cacheSignal - `/demos/react-19.2/cache-signal`
+- [ ] Performance Tracks - (Monitored across all pages)
+- [ ] Partial Pre-rendering - `/demos/react-19.2/partial-prerender`
+
+**Integration Projects:** 0/3 completed (Combined feature pages)
+- [ ] Blog Platform - `/examples/blog`
+- [ ] E-commerce Cart - `/examples/cart`
+- [ ] Real-time Dashboard - `/examples/dashboard`
 
 ---
 

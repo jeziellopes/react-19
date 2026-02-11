@@ -2,13 +2,31 @@
 
 A comprehensive guide to learn and implement all major features introduced in React 19.0 and React 19.2 using **Next.js 15+**.
 
+## Project Architecture: One App, Multiple Demos
+
+This project is structured as **one unified Next.js application** with multiple pages/routes, not separate standalone projects:
+
+- **One codebase** - Single Next.js project with shared dependencies
+- **Multiple routes** - Each feature gets its own page under `/demos/`
+- **Shared components** - Navigation and layout components used across all demos
+- **Easy navigation** - Switch between features without changing projects
+- **Integration examples** - Later sections combine multiple features in single pages
+
+### Benefits of This Approach
+
+1. **Realistic Architecture** - Real apps use multiple features together
+2. **Reduced Overhead** - One set of dependencies, one build process
+3. **Easy Comparison** - Navigate between demos without switching projects
+4. **Shared Learning** - See patterns and utilities reused across features
+5. **Integration Ready** - Combine multiple features in later demos
+
 ## Why Next.js?
 
-This guide uses Next.js because it provides **full support for all React 19.2 features**:
+Next.js provides **full support for all React 19.2 features** in one project:
 - ✅ **Server Components** - Enable `cacheSignal` and advanced patterns
 - ✅ **Partial Pre-rendering** - Built-in support via experimental flag
-- ✅ **App Router** - Modern routing without extra libraries
-- ✅ **Metadata API** - Simplified SEO management
+- ✅ **App Router** - File-based routing (no react-router needed!)
+- ✅ **Metadata API** - Simplified SEO management per route
 - ✅ **Production Ready** - Easy deployment to Vercel
 
 ## Prerequisites
@@ -74,27 +92,29 @@ This guide uses Next.js because it provides **full support for all React 19.2 fe
    export default nextConfig;
    ```
 
-4. **Project Structure**
+4. **Project Structure** (One app, multiple pages)
    ```
-   app/
-   ├── demos/
-   │   ├── react-19.0/
-   │   │   ├── actions/page.tsx
-   │   │   ├── optimistic/page.tsx
-   │   │   ├── use-hook/page.tsx
-   │   │   ├── ref-prop/page.tsx
-   │   │   ├── metadata/page.tsx
-   │   │   └── asset-loading/page.tsx
-   │   └── react-19.2/
-   │       ├── activity/page.tsx
-   │       ├── use-effect-event/page.tsx
-   │       ├── cache-signal/page.tsx
-   │       └── partial-prerender/page.tsx
+   app/                                  # Single Next.js App Router
+   ├── demos/                            # All demos in one place
+   │   ├── react-19.0/                   # React 19.0 feature demos
+   │   │   ├── actions/page.tsx          # /demos/react-19.0/actions
+   │   │   ├── optimistic/page.tsx       # /demos/react-19.0/optimistic
+   │   │   ├── use-hook/page.tsx         # /demos/react-19.0/use-hook
+   │   │   ├── ref-prop/page.tsx         # /demos/react-19.0/ref-prop
+   │   │   ├── metadata/page.tsx         # /demos/react-19.0/metadata
+   │   │   └── asset-loading/page.tsx    # /demos/react-19.0/asset-loading
+   │   └── react-19.2/                   # React 19.2 feature demos
+   │       ├── activity/page.tsx         # /demos/react-19.2/activity
+   │       ├── use-effect-event/page.tsx # /demos/react-19.2/use-effect-event
+   │       ├── cache-signal/page.tsx     # /demos/react-19.2/cache-signal
+   │       └── partial-prerender/page.tsx # /demos/react-19.2/partial-prerender
    ├── components/
-   │   └── Navigation.tsx
-   ├── layout.tsx
-   └── page.tsx
+   │   └── Navigation.tsx                # Shared navigation (all pages)
+   ├── layout.tsx                        # Root layout (wraps all pages)
+   └── page.tsx                          # Home page (/) with demo list
    ```
+
+   **Key Point:** This is ONE project. You'll run `npm run dev` once and navigate between `/demos/react-19.0/actions`, `/demos/react-19.0/optimistic`, etc.
 
 ---
 
@@ -488,25 +508,32 @@ This guide uses Next.js because it provides **full support for all React 19.2 fe
 
 ## Additional Exercises
 
-### Integration Challenges
+### Integration Challenges (All in One Project!)
 
-1. **Build a Blog Platform**
+Build additional pages that combine multiple features:
+
+1. **Build a Blog Platform** (`app/examples/blog/page.tsx`)
    - Use Activity for tab navigation
    - Use metadata for SEO
    - Use Actions for comments
    - Use useOptimistic for likes
+   - **All features working together in one page!**
 
-2. **Create E-commerce Cart**
+2. **Create E-commerce Cart** (`app/examples/cart/page.tsx`)
    - Use Actions for add-to-cart
    - Use useOptimistic for quantity updates
    - Preload product images
    - Use useEffectEvent for analytics
+   - **Demonstrate feature composition**
 
-3. **Build Real-time Dashboard**
+3. **Build Real-time Dashboard** (`app/examples/dashboard/page.tsx`)
    - Use use() for data fetching
    - Use Activity for hidden widgets
    - Use Performance Tracks to optimize
    - Use useEffectEvent for WebSocket
+   - **Show advanced patterns**
+
+These integration examples show the real power of having all features in one project!
 
 ---
 
@@ -541,23 +568,31 @@ After implementing each feature, ask yourself:
 
 ## Tips for Learning
 
-1. **One Feature at a Time** - Don't rush, master each feature before moving on
-2. **Read the Docs** - Official docs have great examples and explanations
-3. **Break Things** - Intentionally cause errors to understand edge cases
-4. **Compare Patterns** - Always compare new vs old approaches
-5. **Build Real Projects** - Apply features to actual use cases
-6. **Performance Profile** - Use Chrome DevTools to see the impact
-7. **Share Your Learning** - Write blog posts or create tutorials
+1. **Build Incrementally** - Add one page/route at a time to the project
+2. **One Feature at a Time** - Don't rush, master each feature before moving on
+3. **Read the Docs** - Official docs have great examples and explanations
+4. **Break Things** - Intentionally cause errors to understand edge cases
+5. **Compare Patterns** - Navigate between pages to compare approaches
+6. **Reuse Code** - Extract shared components and utilities as you go
+7. **Build Real Projects** - Add integration examples that combine multiple features
+8. **Performance Profile** - Use Chrome DevTools across all pages to see differences
+9. **Share Your Learning** - Write blog posts or create tutorials based on your project
+
+**Remember:** You're building ONE application. Think about how the Navigation component, shared utilities, and consistent styling can serve all your demo pages!
 
 ---
 
 ## Next Steps
 
-1. Set up the project structure
-2. Start with React 19.0 features (1-6)
-3. Move to React 19.2 features (7-11)  
-4. Build integration challenges
-5. Profile and optimize
-6. Share your experience!
+1. Set up ONE Next.js project with the structure above
+2. Create the root layout and navigation (shared across all pages)
+3. Build a home page that lists all available demos
+4. Start implementing React 19.0 features (pages 1-6), one route at a time
+5. Move to React 19.2 features (pages 7-11), building on your existing project
+6. Add integration examples that combine multiple features
+7. Profile and optimize the entire application
+8. Deploy your complete showcase app!
 
 Good luck with your React 19 learning journey! 🚀
+
+**Remember:** You're building one cohesive application, not a collection of separate demos. Think about the user experience of navigating through your feature showcase!
